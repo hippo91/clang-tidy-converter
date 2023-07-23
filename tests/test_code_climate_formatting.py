@@ -14,36 +14,37 @@ class CodeClimateFormatterTest(unittest.TestCase):
         args = unittest.mock.Mock()
         args.use_location_lines = True
         self.assertEqual(
-"""{
-  "type": "issue",
-  "check_name": "bugprone-undefined-memory-manipulation.SomethingWrong",
-  "description": "Memory leak",
-  "content": {
-    "body": "```\\nvoid a(int)\\n          ^\\n/some/file/path1.cpp:8:10: Allocated here\\nreturn new A;\\n       ^\\n```"
-  },
-  "categories": [
-    "Bug Risk"
-  ],
-  "location": {
-    "path": "/some/file/path.cpp",
-    "lines": {
-      "begin": 100
-    }
-  },
-  "trace": {
-    "locations": [
-      {
-        "path": "/some/file/path1.cpp",
-        "lines": {
-          "begin": 8
-        }
+"""[
+  {
+    "type": "issue",
+    "check_name": "bugprone-undefined-memory-manipulation.SomethingWrong",
+    "description": "Memory leak",
+    "content": {
+      "body": "```\\nvoid a(int)\\n          ^\\n/some/file/path1.cpp:8:10: Allocated here\\nreturn new A;\\n       ^\\n```"
+    },
+    "categories": [
+      "Bug Risk"
+    ],
+    "location": {
+      "path": "/some/file/path.cpp",
+      "lines": {
+        "begin": 100
       }
-    ]
-  },
-  "severity": "major",
-  "fingerprint": "f2f6ccb970f2259d10e525b4b5805a5c"
-}\0
-""", formatter.format([msg], args))
+    },
+    "trace": {
+      "locations": [
+        {
+          "path": "/some/file/path1.cpp",
+          "lines": {
+            "begin": 8
+          }
+        }
+      ]
+    },
+    "severity": "major",
+    "fingerprint": "f2f6ccb970f2259d10e525b4b5805a5c"
+  }
+]""", formatter.format([msg], args))
 
     def test_extract_content(self):
         child1 = ClangMessage('/some/file/path1.cpp', 8, 10, ClangMessage.Level.NOTE, 'Allocated here', '', ['return new A;', '       ^'])
