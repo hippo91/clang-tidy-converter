@@ -9,6 +9,7 @@ packages = [{include = "clang_tidy_converter"}]
 
 [tool.poetry.dependencies]
 python = "^3.11"
+coverage = "^7.2.7"
 
 [tool.poetry.group.dev.dependencies]
 pytest = ">=3.0.0"
@@ -16,3 +17,6 @@ pytest = ">=3.0.0"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.coverage.run]
+relative_files = true
