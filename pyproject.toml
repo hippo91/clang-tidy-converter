@@ -9,10 +9,10 @@ packages = [{include = "clang_tidy_converter"}]
 
 [tool.poetry.dependencies]
 python = "^3.11"
-coverage = "^7.2.7"
 
 [tool.poetry.group.dev.dependencies]
 pytest = ">=3.0.0"
+coverage = "^7.2.7"
 
 [build-system]
 requires = ["poetry-core"]
